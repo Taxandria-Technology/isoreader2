@@ -1,0 +1,7 @@
+name: taxreader
+
+services:
+  taxreader:
+    build: .
+    volumes:
+      - .:/app/

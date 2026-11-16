@@ -8,6 +8,7 @@ RUN apt-get update && \
     cmake \
     libssl-dev \
     libcurl4-openssl-dev \
+    libuv1-dev\
     libx11-dev\
     libxml2-dev \
     libsimdjson-dev \
@@ -36,6 +37,9 @@ RUN R -e "install.packages(c( \
     'fansi', \
     'knitr', \
     'pkgbuild', \
+    'pkgload', \
+    'fs', \
+    'roxygen2', \
     'pak' \
 ), repos = 'https://cloud.r-project.org/', Ncpus = 4)"
 

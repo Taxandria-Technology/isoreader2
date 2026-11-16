@@ -39,8 +39,13 @@ RUN R -e "install.packages(c( \
     'pak' \
 ), repos = 'https://cloud.r-project.org/', Ncpus = 4)"
 
-
+RUN curl -fsSL https://deb.nodesource.com/setup_24.x | bash -\
+    && apt-get install -y nodejs\
+    && node -v \
+    && /usr/share/nodejs/corepack/shims/npm -v
 
 WORKDIR /app
 
 COPY ./ /app/
+
+RUN /usr/share/nodejs/corepack/shims/npm i -g taxtract-1.tgz

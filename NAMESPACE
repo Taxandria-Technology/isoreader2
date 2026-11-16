@@ -9,6 +9,7 @@ S3method(print,ir_aggregated_data)
 S3method(print,ir_aggregator)
 S3method(print,ir_isofiles)
 export(auto)
+export(find_tax)
 export(ir_add_to_aggregator)
 export(ir_aggregate_isofiles)
 export(ir_calculate_ratios)
@@ -63,13 +64,19 @@ export(ir_start_aggregator)
 import(cli)
 import(ggplot2)
 import(rlang)
-importFrom(dplyr,all_of)
-importFrom(dplyr,everything)
+importFrom(dplyr,
+  all_of,
+  everything
+)
 importFrom(grDevices,palette.colors)
 importFrom(methods,is)
-importFrom(stats,na.omit)
-importFrom(stats,setNames)
-importFrom(tibble,as_tibble)
-importFrom(tibble,is_tibble)
-importFrom(tibble,tibble)
+importFrom(stats,
+  na.omit,
+  setNames
+)
+importFrom(tibble,
+  as_tibble,
+  is_tibble,
+  tibble
+)
 importFrom(utils,tail)

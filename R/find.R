@@ -1,3 +1,26 @@
+#' Find tax files
+#' @export
+find_tax <- function(pathlike) {
+  p <- processx::process$new(
+    "taxtract",
+    c("-f", pathlike),
+    stdout = "|", stderr = "|"
+  )
+
+  idx <- 0L
+  stderr_lines <- character(0)
+  while (p$is_alive()) {
+    p$poll_io(0)
+    stderr_lines <- c(stderr_lines, p$read_error_lines())
+    out_lines <- p$read_output_lines()
+  }
+
+  p$wait()
+  p$poll_io(0)
+  stderr_lines <- c(stderr_lines, p$read_error_lines())
+  unlink(pathlike)
+}
+
 #' Bundled example files
 #' @description `ir_examples_folder()` returns the path to the folder with the
 #'   example isodat files bundled with the package (a convenience wrapper around

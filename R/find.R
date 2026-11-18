@@ -18,7 +18,21 @@ find_tax <- function(pathlike) {
   p$wait()
   p$poll_io(0)
   stderr_lines <- c(stderr_lines, p$read_error_lines())
-  unlink(pathlike)
+
+  pathlike <- sub("\\.tax", "\\.json", pathlike, ignore.case = TRUE)
+  cat(pathlike, "\n")
+
+  results <- c(0:16)
+  results[0] <- query_json(pathlike, "/timestamp", list_as_tibble = TRUE)
+
+  i <- 1
+  while (i<3) {
+    col <- sprintf("/amplifier%02.2d", i)
+    results[i] <- query_json(pathlike, col, list_as_tibble = TRUE)
+    i <- i + 1
+  }
+
+  return(results)
 }
 
 #' Bundled example files
